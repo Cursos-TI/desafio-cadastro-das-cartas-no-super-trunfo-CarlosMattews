@@ -3,7 +3,7 @@
 #include <ctype.h>    // Biblioteca para manipulação de caracteres, como conversão de letras maiúsculas para minúsculas
 #include <string.h>   // Biblioteca para manipulação de strings, como cópia, comparação e concatenação
 
-#define MAX_CARTAS 32 // 8 estados * 4 cidades por estado
+#define MAX_CARTAS 2 // 8 estados * 4 cidades por estado
 
 // Estrutura para representar uma carta com informações sobre uma cidade
 typedef struct {
@@ -14,6 +14,8 @@ typedef struct {
     float area; // Área da cidade em km²
     float pib; // PIB da cidade
     int pontos_turisticos; // Número de pontos turísticos na cidade
+    float densidade_populacional; // Medida de quantas pessoas vivem por quilômetro quadrado
+    float pib_per_capita; // Medida da média de produção econômica por pessoa.
 } Carta;
 
 // Função para validar se o estado está entre 'A' e 'H'
@@ -46,7 +48,10 @@ int cidadeJaCadastrada(Carta *cartas, int qtd_cartas, char estado, char *codigo,
 // Função para cadastrar uma nova carta
 void cadastrarCarta(Carta *cartas, int qtd_cartas) {
     Carta carta;
-    // Solicitar o estado ao usuário e validar
+ 
+    printf("Olá, bem vindo ao jogo Super Trunfo!\n");
+
+   // Solicitar o estado ao usuário e validar
     do {
         printf("\nDigite o estado (A-H): ");
         scanf(" %c", &carta.estado);
@@ -105,6 +110,10 @@ void cadastrarCarta(Carta *cartas, int qtd_cartas) {
         limparBuffer(); // Limpar buffer de entrada
     }
 
+    // Calcular densidade populacional e PIB per capita
+    carta.densidade_populacional = (float)carta.populacao / carta.area;
+    carta.pib_per_capita = (float)carta.pib / carta.populacao;
+
     // Adicionar a nova carta ao array de cartas
     cartas[qtd_cartas] = carta;
 }
@@ -117,7 +126,9 @@ void exibirCarta(const Carta *carta) {
     printf("Cidade: %s\n", carta->nome);
     printf("População: %d habitantes\n", carta->populacao);
     printf("Área: %.2f km²\n", carta->area);
-    printf("PIB: %.2f\n", carta->pib);
+    printf("Densidade Populacional: %.2f pessoas/km²\n", carta->densidade_populacional);
+    printf("PIB: %.2f bilhões de reais\n", carta->pib);
+    printf("PIB per Capita: %f reais\n", carta->densidade_populacional);
     printf("Pontos turísticos: %d\n", carta->pontos_turisticos);
     printf("=======================\n");
 }
