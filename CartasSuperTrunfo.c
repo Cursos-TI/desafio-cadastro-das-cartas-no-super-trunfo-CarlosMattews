@@ -3,7 +3,7 @@
 #include <ctype.h>    // Biblioteca para manipulação de caracteres, como conversão de letras maiúsculas para minúsculas
 #include <string.h>   // Biblioteca para manipulação de strings, como cópia, comparação e concatenação
 
-#define MAX_CARTAS 2 // 8 estados * 4 cidades por estado
+#define MAX_CARTAS 2
 
 // Estrutura para representar uma carta com informações sobre uma cidade
 typedef struct {
