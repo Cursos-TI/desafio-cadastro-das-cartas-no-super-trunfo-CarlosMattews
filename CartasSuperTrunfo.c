@@ -10,7 +10,7 @@ typedef struct {
     char estado; // Letra representando o estado (A-H)
     char codigo[4]; // Código da carta (ex: A01, B02)
     char nome[50]; // Nome da cidade
-    unsigned long int populacao; // População da cidade (agora do tipo unsigned long int)
+    unsigned long int populacao; // População da cidade
     float area; // Área da cidade em km²
     float pib; // PIB da cidade
     int pontos_turisticos; // Número de pontos turísticos na cidade
